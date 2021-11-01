@@ -1,0 +1,14 @@
+run("Subtract Background...", "rolling=25 light separate");
+run("Median...", "radius=2");
+run("8-bit");
+setAutoThreshold("Triangle no-reset");
+setOption("BlackBackground", false);
+run("Convert to Mask");
+run("Set Measurements...", "area display redirect=None decimal=2");
+rename("Inter-LP Tissue");
+run("Analyze Particles...", "size=2-Infinity summarize");
+run("Invert LUT");
+rename("Lipid Droplet");
+run("Analyze Particles...", "size=2-20000 summarize");
+selectWindow("Lipid Droplet");
+close();
